@@ -12,7 +12,7 @@ function useSessions(roomId) {
     return unsubscribe;
   }, [roomId]);
 
-  console.log(sessions);
+  console.log("Sessions in useSessions" + sessions);
   return sessions;
 }
 

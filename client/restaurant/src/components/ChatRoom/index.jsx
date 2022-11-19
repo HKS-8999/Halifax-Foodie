@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { sessionId } from "../../data/sessionIds";
+import { useSessions } from "../../hooks/useSessions";
 import "./styles.css";
 
 function ChatRoom() {
@@ -7,7 +8,10 @@ function ChatRoom() {
 
   const room = sessionId.find((x) => x.id === params.id);
 
-  console.log(room);
+  const sessions = useSessions(params.id);
+  console.log("Sessions in chatroom:" + sessions);
+
+  // console.log(room);
   if (!room) {
     // TODO: 404
   }

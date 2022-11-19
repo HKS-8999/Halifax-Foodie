@@ -67,8 +67,8 @@ async function sendMessage(roomId, user, text, sessionId) {
 }
 
 function getMessages(roomId, callback, user, sessionId) {
-  console.log("Room Id in get messages: " + roomId);
-  console.log("user.uid from get messages: " + user.uid);
+  // console.log("Room Id in get messages: " + roomId);
+  // console.log("user.uid from get messages: " + user.uid);
 
   return onSnapshot(
     query(
@@ -88,20 +88,17 @@ function getMessages(roomId, callback, user, sessionId) {
 let sessionId = "yiy";
 
 function getSessions(roomId, callback) {
-  console.log(
-    "Query- getSessions" +
-      query(collection(db, "chat-rooms"), orderBy("timestamp", "asc"))
-  );
-  return onSnapshot(
-    query(collection(db, "chat-rooms"), orderBy("timestamp", "asc")),
-    (querySnapshot) => {
-      const sessions = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-      }));
-      console.log("List of collections: " + sessions);
-      callback(sessions);
-    }
-  );
+  // console.log(
+  //   "Query- getSessions" +
+  //     query(collection(db, "chat-rooms"), orderBy("timestamp", "asc"))
+  // );
+  return onSnapshot(query(collection(db, "chat-rooms")), (querySnapshot) => {
+    const sessions = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+    }));
+    // console.log("List of collections: " + sessions);
+    callback(sessions);
+  });
 }
 
 export { loginWithGoogle, sendMessage, getMessages, getSessions };

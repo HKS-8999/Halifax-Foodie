@@ -10,6 +10,8 @@ function MessageList({ roomId }) {
 
   console.log(messages);
 
+  console.log(messages);
+
   React.useLayoutEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
