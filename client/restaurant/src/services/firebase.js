@@ -85,9 +85,15 @@ function getMessages(roomId, callback, user, sessionId) {
   );
 }
 
+let sessionId = "yiy";
+
 function getSessions(roomId, callback) {
+  console.log(
+    "Query- getSessions" +
+      query(collection(db, "chat-rooms"), orderBy("timestamp", "asc"))
+  );
   return onSnapshot(
-    query(collection(db, "chat-rooms", roomId), orderBy("timestamp", "asc")),
+    query(collection(db, "chat-rooms"), orderBy("timestamp", "asc")),
     (querySnapshot) => {
       const sessions = querySnapshot.docs.map((doc) => ({
         id: doc.id,

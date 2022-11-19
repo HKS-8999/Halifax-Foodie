@@ -1,4 +1,4 @@
-.messages-container {
+/* .messages-container {
   width: 150%;
   padding: 16px;
   flex-grow: 1;
@@ -7,4 +7,20 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+} */
+
+.chat-room-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chat-room-list li {
+  height: 100px;
+  background: var(--color-gray);
+  flex: 1 1 calc(50% - 4px);
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

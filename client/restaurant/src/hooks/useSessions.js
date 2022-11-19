@@ -1,14 +1,14 @@
 import React from "react";
 import { getSessions } from "../services/firebase";
-import { useAuth } from "../hooks/useAuth";
+// import { useAuth } from "../hooks/useAuth";
 
 function useSessions(roomId) {
   const [sessions, setSessions] = React.useState([]);
-  const { user } = useAuth();
-//   const sessionId = "yiy";
+  //   const { user } = useAuth();
+  //   const sessionId = "yiy";
 
   React.useEffect(() => {
-    const unsubscribe = getSessions(roomId, setSessions, user, sessionId);
+    const unsubscribe = getSessions(roomId, setSessions);
     return unsubscribe;
   }, [roomId]);
 

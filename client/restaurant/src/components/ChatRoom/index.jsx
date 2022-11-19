@@ -1,13 +1,11 @@
 import { Link, useParams } from "react-router-dom";
-import { chatRooms } from "../../data/chatRooms";
+import { sessionId } from "../../data/sessionIds";
 import "./styles.css";
-import { MessageInput } from "../MessageInput";
-import { MessageList } from "../MessageList";
 
 function ChatRoom() {
   const params = useParams();
 
-  const room = chatRooms.find((x) => x.id === params.id);
+  const room = sessionId.find((x) => x.id === params.id);
 
   console.log(room);
   if (!room) {
@@ -16,14 +14,19 @@ function ChatRoom() {
 
   return (
     <>
-      <h2>{room.title}</h2>
+      <h2>Choose a Chat Session</h2>
       <div>
-        <Link to="/">⬅️ Back to all rooms</Link>
+        <Link to="/">⬅️ Back to the rooms</Link>
       </div>
-      <div className="messages-container">
-        <MessageList roomId={room.id} />
-        <MessageInput roomId={room.id} />
-      </div>
+      <ul className="chat-room-list">
+        {sessionId.map((room) => (
+          <li key={room.id}>
+            <Link to={`/room/${params.id}/${room.title}`}>
+              Session ID: "{room.title}"
+            </Link>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
