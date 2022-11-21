@@ -17,6 +17,7 @@ def lambda_handler(event, context):
   
     reqEvent = event['interpretations'][0]['intent']['name']
     recipeTableName = 'recipeTable'
+    orderTableName = 'orderTable'
     
     
     if(reqEvent == 'recipeIntent'):
@@ -112,7 +113,7 @@ def lambda_handler(event, context):
       orderStatusFromLex = event['interpretations'][0]['intent']['slots']['orderStatus']['value']['originalValue']
       print(orderIdFromLex)
       data = client.get_item(
-      TableName='orderTable',
+      TableName=orderTableName,
       Key={
           'orderId': {'S': orderIdFromLex}
       }
@@ -126,7 +127,7 @@ def lambda_handler(event, context):
                     "type": "Close"
                 },
                 "intent": {
-                    "name": "orderIntent",
+                    "name": reqEvent,
                       "state": "Fulfilled"
                 }
             },
@@ -138,14 +139,20 @@ def lambda_handler(event, context):
               ]
           }
       else:
-          print(data)
-          return {
+            table = boto3.resource('dynamodb').Table(orderTableName)
+            updateOrderStatusRes = table.update_item(
+                Key={'orderId': orderIdFromLex},
+                UpdateExpression="SET orderStatus = :neworderStatus",
+                ExpressionAttributeValues={":neworderStatus": orderStatusFromLex},
+            )
+            print(updateOrderStatusRes)
+            return {
                 "sessionState": {
                     "dialogAction": {
                         "type": "Close"
                     },
                     "intent": {
-                        "name": "orderIntent",
+                        "name": reqEvent,
                           "state": "Fulfilled"
                     }
                 },
