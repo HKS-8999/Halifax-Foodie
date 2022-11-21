@@ -6,6 +6,7 @@ client = boto3.client('dynamodb')
 def lambda_handler(event, context):
     
     reqEvent = event['interpretations'][0]['intent']['name']
+    orderTableName = 'orderTable'
     
     if(reqEvent == 'rateOrderIntent'):
         orderIdFromLex = event['interpretations'][0]['intent']['slots']['orderId']['value']['originalValue']
@@ -13,9 +14,9 @@ def lambda_handler(event, context):
         print(orderIdFromLex)
         
         data = client.get_item(
-        TableName='orderTable',
+        TableName=orderTableName,
         Key={
-            'orderId': {'S': '1001'}
+            'orderId': {'S': orderIdFromLex}
         }
         )
         if 'Item' not in data:
@@ -26,7 +27,7 @@ def lambda_handler(event, context):
                       "type": "Close"
                   },
                   "intent": {
-                      "name": "orderIntent",
+                      "name": reqEvent,
                         "state": "Fulfilled"
                   }
               },
@@ -38,9 +39,9 @@ def lambda_handler(event, context):
                 ]
             }
         else:
-            table = boto3.resource('dynamodb').Table('orderTable')
+            table = boto3.resource('dynamodb').Table(orderTableName)
             rateOrderData = table.update_item(
-                Key={'orderId': '1001'},
+                Key={'orderId': orderIdFromLex},
                 UpdateExpression="SET orderRating = :newRating",
                 ExpressionAttributeValues={":newRating": orderRatingFromLex},
             )
@@ -51,7 +52,7 @@ def lambda_handler(event, context):
                           "type": "Close"
                       },
                       "intent": {
-                          "name": "orderIntent",
+                          "name": reqEvent,
                             "state": "Fulfilled"
                       }
                   },
@@ -70,7 +71,7 @@ def lambda_handler(event, context):
         data = client.get_item(
         TableName='orderTable',
         Key={
-            'orderId': {'S': '1001'}
+            'orderId': {'S': orderIdFromLex}
         }
         )
     
@@ -82,7 +83,7 @@ def lambda_handler(event, context):
                       "type": "Close"
                   },
                   "intent": {
-                      "name": "orderIntent",
+                      "name": reqEvent,
                         "state": "Fulfilled"
                   }
               },
@@ -101,7 +102,7 @@ def lambda_handler(event, context):
                           "type": "Close"
                       },
                       "intent": {
-                          "name": "orderIntent",
+                          "name": reqEvent,
                             "state": "Fulfilled"
                       }
                   },
@@ -117,9 +118,9 @@ def lambda_handler(event, context):
       orderIdFromLex = event['interpretations'][0]['intent']['slots']['orderId']['value']['originalValue']
       print(orderIdFromLex)
       data = client.get_item(
-      TableName='orderTable',
+      TableName=orderTableName,
       Key={
-          'orderId': {'S': '1001'}
+          'orderId': {'S': orderIdFromLex}
       }
       )
   
@@ -131,7 +132,7 @@ def lambda_handler(event, context):
                     "type": "Close"
                 },
                 "intent": {
-                    "name": "orderIntent",
+                    "name": reqEvent,
                       "state": "Fulfilled"
                 }
             },
@@ -150,7 +151,7 @@ def lambda_handler(event, context):
                         "type": "Close"
                     },
                     "intent": {
-                        "name": "orderIntent",
+                        "name": reqEvent,
                           "state": "Fulfilled"
                     }
                 },
