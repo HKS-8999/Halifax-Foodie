@@ -1,5 +1,6 @@
 import { useAuth } from "../../hooks/useAuth";
 import "./styles.css";
+import Bot from "../../Bot";
 
 function UnauthenticatedApp() {
   const { login } = useAuth();
@@ -11,6 +12,7 @@ function UnauthenticatedApp() {
         <button onClick={login} className="login">
           Login with Google
         </button>
+        <Bot />
       </div>
     </>
   );
