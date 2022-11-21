@@ -109,11 +109,12 @@ def lambda_handler(event, context):
                 }   
     else:
       orderIdFromLex = event['interpretations'][0]['intent']['slots']['orderId']['value']['originalValue']
+      orderStatusFromLex = event['interpretations'][0]['intent']['slots']['orderStatus']['value']['originalValue']
       print(orderIdFromLex)
       data = client.get_item(
       TableName='orderTable',
       Key={
-          'orderId': {'S': '1001'}
+          'orderId': {'S': orderIdFromLex}
       }
       )
   
@@ -151,7 +152,7 @@ def lambda_handler(event, context):
                 "messages": [
                     {
                     "contentType": "PlainText",
-                    "content": "Your current order status is " + data['Item']['orderStatus']['S'] +""
+                    "content": "The order status for the order with order order ID"+ orderIdFromLex +" has been updated to "+ orderStatusFromLex+"."
                     }
                   ]
               }
