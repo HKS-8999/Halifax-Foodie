@@ -21,7 +21,7 @@ def lambda_handler(event, context):
                                 Item={
                                     'recipeId': recipeId,
                                     'recipName': recipeNameFromLex,
-                                    'recipePrice': '40',
+                                    'recipePrice': recipePriceFromLex,
                                 }
                             )
         
