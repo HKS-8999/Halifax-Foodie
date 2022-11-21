@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>| HalifaxFoodie | Customer Service Chat |</h1>
+      <h1>| HalifaxFoodie |</h1>
       {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </div>
   );

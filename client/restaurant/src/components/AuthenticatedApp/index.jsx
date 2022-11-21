@@ -7,9 +7,9 @@ function AuthenticatedApp() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/room/:id" element={<ChatRoom />} />
-        <Route path="/room/general/:id" element={<SessionList />} />
+        <Route path="/restaurant/chat/" element={<Landing />} />
+        <Route path="/restaurant/chat/room/:id" element={<ChatRoom />} />
+        <Route path="/restaurant/chat/room/:id/:id" element={<SessionList />} />
       </Routes>
     </BrowserRouter>
   );
