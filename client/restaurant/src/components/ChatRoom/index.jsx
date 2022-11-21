@@ -25,7 +25,7 @@ function ChatRoom() {
       <ul className="chat-room-list">
         {sessionId.map((room) => (
           <li key={room.id}>
-            <Link to={`/room/${params.id}/${room.title}`}>
+            <Link to={`/restaurant/chat/${params.id}/${room.title}`}>
               Session ID: "{room.title}"
             </Link>
           </li>

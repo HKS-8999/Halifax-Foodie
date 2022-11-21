@@ -7,22 +7,22 @@ import { MessageList } from "../MessageList";
 function SessionList() {
   const params = useParams();
 
-  const room = sessionId.find((x) => x.id === params.id);
+  const session = sessionId.find((x) => x.id === params.id);
 
-  console.log("room" + room);
-  if (!room) {
+  console.log("room" + session);
+  if (!session) {
     // TODO: 404
   }
 
   return (
     <>
-      <h2>{room.title}</h2>
+      <h2>{session.title}</h2>
       <div>
         <Link to="/">⬅️ Back to the rooms</Link>
       </div>
       <div className="messages-container">
-        <MessageList roomId={room.roomId} />
-        <MessageInput roomId={room.roomId} />
+        <MessageList roomId={session.roomId} />
+        <MessageInput roomId={session.roomId} />
       </div>
     </>
   );
