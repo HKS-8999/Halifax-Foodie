@@ -1,14 +1,23 @@
 import json
 import boto3
 import uuid
+from boto3.dynamodb.conditions import Attr
 
 client = boto3.client('dynamodb')
 
 def lambda_handler(event, context):
     
+    # table = boto3.resource('dynamodb').Table('recipeTable')
+    # data = table.scan(FilterExpression = Attr('recipeName').eq('Pizza'))
+    # dataItem = data['Items'][0]
+    # print(dataItem)
+    # recipeIdFromDynamo = dataItem['recipeId']
+    # print(recipeIdFromDynamo)
+  
   
     reqEvent = event['interpretations'][0]['intent']['name']
     recipeTableName = 'recipeTable'
+    
     
     if(reqEvent == 'recipeIntent'):
         recipeNameFromLex = event['interpretations'][0]['intent']['slots']['recipeName']['value']['originalValue']
@@ -20,7 +29,7 @@ def lambda_handler(event, context):
         createRecipeItem = table.put_item(
                                 Item={
                                     'recipeId': recipeId,
-                                    'recipName': recipeNameFromLex,
+                                    'recipeName': recipeNameFromLex,
                                     'recipePrice': recipePriceFromLex,
                                 }
                             )
@@ -46,13 +55,12 @@ def lambda_handler(event, context):
         updateRecipeNameFromLex = event['interpretations'][0]['intent']['slots']['recipeName']['value']['originalValue']
         updateRecipePriceFromLex = event['interpretations'][0]['intent']['slots']['updatedRecipePrice']['value']['originalValue']
         
-        data = client.get_item(
-        TableName=recipeTableName,
-        Key={
-            'recipName': {'S': recipeNameFromLex}
-        }
-        )
-        if 'Item' not in data:
+        table = boto3.resource('dynamodb').Table(recipeTableName)
+        data = table.scan(FilterExpression = Attr('recipeName').eq(updateRecipeNameFromLex))
+        # data = response['Items']
+        # print(response)
+        print(data)
+        if 'Items' not in data:
             print("null")
             return{
               "sessionState": {
@@ -73,13 +81,15 @@ def lambda_handler(event, context):
             }
         else:
             table = boto3.resource('dynamodb').Table(recipeTableName)
-            recipeIdFromDynamo = data['Item']['recipeId']['S']
-            print(recipeId)
+            dataItem = data['Items'][0]
+            recipeIdFromDynamo = dataItem['recipeId']
+            print(recipeIdFromDynamo)
             updateRecipePriceRes = table.update_item(
                 Key={'recipeId': recipeIdFromDynamo},
                 UpdateExpression="SET recipePrice = :newRecipePrice",
                 ExpressionAttributeValues={":newRecipePrice": updateRecipePriceFromLex},
             )
+            print(updateRecipePriceRes)
             return {
                   "sessionState": {
                       "dialogAction": {
