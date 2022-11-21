@@ -1,41 +1,44 @@
 import json
 import boto3
+import uuid
 
 client = boto3.client('dynamodb')
 
 def lambda_handler(event, context):
+    
   
     reqEvent = event['interpretations'][0]['intent']['name']
     
     if(reqEvent == 'recipeIntent'):
         recipeNameFromLex = event['interpretations'][0]['intent']['slots']['recipeName']['value']['originalValue']
-        recipePriceFromLex = event['interpretations'][0]['intent']['slots']['recipePsrice']['value']['originalValue']
+        recipePriceFromLex = event['interpretations'][0]['intent']['slots']['recipePrice']['value']['originalValue']
         print(recipeNameFromLex)
 
         recipeTableName = 'recipeTable'
-        
+        recipeId = str(uuid.uuid4())
         table = boto3.resource('dynamodb').Table(recipeTableName)
         createRecipeItem = table.put_item(
                                 Item={
+                                    'recipeId': recipeId,
                                     'recipName': recipeNameFromLex,
-                                    'recipePrice': recipePriceFromLex,
+                                    'recipePrice': '40',
                                 }
                             )
-        print(createRecipeItem)
+        
         return {
             "sessionState": {
                 "dialogAction": {
                 "type": "Close"
                 },
                 "intent": {
-                "name": "orderIntent",
+                "name": reqEvent,
                 "state": "Fulfilled"
                 }
             },
                 "messages": [
                     {
                       "contentType": "PlainText",
-                      "content": "The order with order Id "+orderIdFromLex+" has been rated "+ orderRatingFromLex+" star successfully!"
+                      "content": "Your recipe item "+ recipeNameFromLex +" with price of " + recipePriceFromLex + " has been added to your inventory successfully! Your recipe item reference number is "+ recipeId +"."
                     }
                 ]
         }
