@@ -18,7 +18,7 @@ function SessionList() {
     <>
       <h2>{session.title}</h2>
       <div>
-        <Link to="/">⬅️ Back to the rooms</Link>
+        <Link to="/">⬅️ Back to the homepage</Link>
       </div>
       <div className="messages-container">
         <MessageList roomId={session.roomId} />

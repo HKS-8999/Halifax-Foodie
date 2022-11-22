@@ -1,10 +1,10 @@
 const chatRooms = [
-  { id: "general", title: "General" },
-  { id: "order", title: "Order" },
-  { id: "payment", title: "Payment" },
-  { id: "account", title: "Account" },
-  { id: "delivery", title: "Delivery" },
-  { id: "promotions", title: "Promotions" },
+  { id: "delivery", title: "Late Delivery Issues" },
+  { id: "quality", title: "Food Quality Issues" },
+  { id: "quantity", title: "Food Quantity Issues" },
+  { id: "payment", title: "Order Payment Issues" },
+  { id: "mismanagement", title: "Order Mismanagement Issues" },
+  { id: "tracking", title: "Order Tracking Issues" },
 ];
 
 export { chatRooms };

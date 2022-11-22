@@ -6,6 +6,9 @@ function RestaurantChat() {
   return (
     <>
       <h2>Choose a Chat Room</h2>
+      <div>
+        <Link to="/">⬅️ Back to the homepage</Link>
+      </div>
       <ul className="chat-room-list">
         {chatRooms.map((room) => (
           <li key={room.id}>
