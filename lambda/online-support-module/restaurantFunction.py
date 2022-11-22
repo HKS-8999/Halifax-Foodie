@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     recipeTableName = 'recipeTable'
     orderTableName = 'orderTable'
     
-    # Functionality if the intent is recipe intent
+    # Functionality if the intent is recipe intent to add the recipe item in DynamoDB
     if(reqEvent == 'recipeIntent'):
         recipeNameFromLex = event['interpretations'][0]['intent']['slots']['recipeName']['value']['originalValue']
         recipePriceFromLex = event['interpretations'][0]['intent']['slots']['recipePrice']['value']['originalValue']
@@ -44,6 +44,8 @@ def lambda_handler(event, context):
                     }
                 ]
         }
+
+     # Functionality if the intent is to update the recipe in DynamoDB    
     elif(reqEvent == 'updateRecipePriceIntent'):
         updateRecipeNameFromLex = event['interpretations'][0]['intent']['slots']['recipeName']['value']['originalValue']
         updateRecipePriceFromLex = event['interpretations'][0]['intent']['slots']['updatedRecipePrice']['value']['originalValue']
