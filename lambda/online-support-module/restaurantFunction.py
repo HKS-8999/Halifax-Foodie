@@ -7,19 +7,11 @@ client = boto3.client('dynamodb')
 
 def lambda_handler(event, context):
     
-    # table = boto3.resource('dynamodb').Table('recipeTable')
-    # data = table.scan(FilterExpression = Attr('recipeName').eq('Pizza'))
-    # dataItem = data['Items'][0]
-    # print(dataItem)
-    # recipeIdFromDynamo = dataItem['recipeId']
-    # print(recipeIdFromDynamo)
-  
-  
     reqEvent = event['interpretations'][0]['intent']['name']
     recipeTableName = 'recipeTable'
     orderTableName = 'orderTable'
     
-    
+    # Functionality if the intent is recipe intent
     if(reqEvent == 'recipeIntent'):
         recipeNameFromLex = event['interpretations'][0]['intent']['slots']['recipeName']['value']['originalValue']
         recipePriceFromLex = event['interpretations'][0]['intent']['slots']['recipePrice']['value']['originalValue']
