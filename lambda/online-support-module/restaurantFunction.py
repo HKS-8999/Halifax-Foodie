@@ -102,6 +102,7 @@ def lambda_handler(event, context):
                       }
                     ]
                 }   
+    # Functionality if the intent is to update the status of an order in the DynamoDB 
     else:
       orderIdFromLex = event['interpretations'][0]['intent']['slots']['orderId']['value']['originalValue']
       orderStatusFromLex = event['interpretations'][0]['intent']['slots']['orderStatus']['value']['originalValue']
