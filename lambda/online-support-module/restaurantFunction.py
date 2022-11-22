@@ -52,9 +52,9 @@ def lambda_handler(event, context):
         
         table = boto3.resource('dynamodb').Table(recipeTableName)
         data = table.scan(FilterExpression = Attr('recipeName').eq(updateRecipeNameFromLex))
-        # data = response['Items']
-        # print(response)
         print(data)
+
+        #Validate if the item is there in the DynamoDB for the restaurant
         if 'Items' not in data:
             print("null")
             return{
@@ -113,7 +113,8 @@ def lambda_handler(event, context):
           'orderId': {'S': orderIdFromLex}
       }
       )
-  
+    
+        #Validate if the order id provided is present in the DynaoDB for the restaurant
       if 'Item' not in data:
           print("null")
           return{
