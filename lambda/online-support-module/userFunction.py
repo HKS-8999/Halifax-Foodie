@@ -1,13 +1,16 @@
 import json
 import boto3
 
+# Boto client to get the resource DynamoDB
 client = boto3.client('dynamodb')
 
+# Lamdba function
 def lambda_handler(event, context):
     
     reqEvent = event['interpretations'][0]['intent']['name']
     orderTableName = 'orderTable'
-    
+
+    # Functionality if the intent is rate order intent to add the rating in DynamoDB
     if(reqEvent == 'rateOrderIntent'):
         orderIdFromLex = event['interpretations'][0]['intent']['slots']['orderId']['value']['originalValue']
         orderRatingFromLex = event['interpretations'][0]['intent']['slots']['orderRating']['value']['originalValue']

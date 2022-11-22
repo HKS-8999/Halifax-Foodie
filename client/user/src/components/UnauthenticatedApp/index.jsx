@@ -12,7 +12,6 @@ function UnauthenticatedApp() {
         <button onClick={login} className="login">
           Login with Google
         </button>
-        <Bot />
       </div>
     </>
   );

@@ -3,22 +3,17 @@ import boto3
 import uuid
 from boto3.dynamodb.conditions import Attr
 
+# Boto client to get the resource DynamoDB
 client = boto3.client('dynamodb')
 
+# Lamdba function
 def lambda_handler(event, context):
     
-    # table = boto3.resource('dynamodb').Table('recipeTable')
-    # data = table.scan(FilterExpression = Attr('recipeName').eq('Pizza'))
-    # dataItem = data['Items'][0]
-    # print(dataItem)
-    # recipeIdFromDynamo = dataItem['recipeId']
-    # print(recipeIdFromDynamo)
-  
-  
     reqEvent = event['interpretations'][0]['intent']['name']
     recipeTableName = 'recipeTable'
+    orderTableName = 'orderTable'
     
-    
+    # Functionality if the intent is recipe intent to add the recipe item in DynamoDB
     if(reqEvent == 'recipeIntent'):
         recipeNameFromLex = event['interpretations'][0]['intent']['slots']['recipeName']['value']['originalValue']
         recipePriceFromLex = event['interpretations'][0]['intent']['slots']['recipePrice']['value']['originalValue']
@@ -34,6 +29,7 @@ def lambda_handler(event, context):
                                 }
                             )
         
+        # Return the respone for Lex
         return {
             "sessionState": {
                 "dialogAction": {
@@ -51,17 +47,20 @@ def lambda_handler(event, context):
                     }
                 ]
         }
+
+     # Functionality if the intent is to update the recipe in DynamoDB    
     elif(reqEvent == 'updateRecipePriceIntent'):
         updateRecipeNameFromLex = event['interpretations'][0]['intent']['slots']['recipeName']['value']['originalValue']
         updateRecipePriceFromLex = event['interpretations'][0]['intent']['slots']['updatedRecipePrice']['value']['originalValue']
         
         table = boto3.resource('dynamodb').Table(recipeTableName)
         data = table.scan(FilterExpression = Attr('recipeName').eq(updateRecipeNameFromLex))
-        # data = response['Items']
-        # print(response)
         print(data)
+
+        #Validate if the item is there in the DynamoDB for the restaurant
         if 'Items' not in data:
             print("null")
+             # Return the respone for Lex
             return{
               "sessionState": {
                   "dialogAction": {
@@ -90,6 +89,7 @@ def lambda_handler(event, context):
                 ExpressionAttributeValues={":newRecipePrice": updateRecipePriceFromLex},
             )
             print(updateRecipePriceRes)
+             # Return the respone for Lex
             return {
                   "sessionState": {
                       "dialogAction": {
@@ -107,25 +107,29 @@ def lambda_handler(event, context):
                       }
                     ]
                 }   
+    # Functionality if the intent is to update the status of an order in the DynamoDB 
     else:
       orderIdFromLex = event['interpretations'][0]['intent']['slots']['orderId']['value']['originalValue']
+      orderStatusFromLex = event['interpretations'][0]['intent']['slots']['orderStatus']['value']['originalValue']
       print(orderIdFromLex)
       data = client.get_item(
-      TableName='orderTable',
+      TableName=orderTableName,
       Key={
-          'orderId': {'S': '1001'}
+          'orderId': {'S': orderIdFromLex}
       }
       )
-  
+    
+        #Validate if the order id provided is present in the DynaoDB for the restaurant
       if 'Item' not in data:
           print("null")
+           # Return the respone for Lex
           return{
             "sessionState": {
                 "dialogAction": {
                     "type": "Close"
                 },
                 "intent": {
-                    "name": "orderIntent",
+                    "name": reqEvent,
                       "state": "Fulfilled"
                 }
             },
@@ -137,21 +141,28 @@ def lambda_handler(event, context):
               ]
           }
       else:
-          print(data)
-          return {
+            table = boto3.resource('dynamodb').Table(orderTableName)
+            updateOrderStatusRes = table.update_item(
+                Key={'orderId': orderIdFromLex},
+                UpdateExpression="SET orderStatus = :neworderStatus",
+                ExpressionAttributeValues={":neworderStatus": orderStatusFromLex},
+            )
+            print(updateOrderStatusRes)
+             # Return the respone for Lex
+            return {
                 "sessionState": {
                     "dialogAction": {
                         "type": "Close"
                     },
                     "intent": {
-                        "name": "orderIntent",
+                        "name": reqEvent,
                           "state": "Fulfilled"
                     }
                 },
                 "messages": [
                     {
                     "contentType": "PlainText",
-                    "content": "Your current order status is " + data['Item']['orderStatus']['S'] +""
+                    "content": "The order status for the order with order order ID"+ orderIdFromLex +" has been updated to "+ orderStatusFromLex+"."
                     }
                   ]
               }
