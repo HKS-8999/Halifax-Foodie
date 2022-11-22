@@ -27,6 +27,7 @@ def lambda_handler(event, context):
                                 }
                             )
         
+        # Return the respone for Lex
         return {
             "sessionState": {
                 "dialogAction": {
@@ -57,6 +58,7 @@ def lambda_handler(event, context):
         #Validate if the item is there in the DynamoDB for the restaurant
         if 'Items' not in data:
             print("null")
+             # Return the respone for Lex
             return{
               "sessionState": {
                   "dialogAction": {
@@ -85,6 +87,7 @@ def lambda_handler(event, context):
                 ExpressionAttributeValues={":newRecipePrice": updateRecipePriceFromLex},
             )
             print(updateRecipePriceRes)
+             # Return the respone for Lex
             return {
                   "sessionState": {
                       "dialogAction": {
@@ -117,6 +120,7 @@ def lambda_handler(event, context):
         #Validate if the order id provided is present in the DynaoDB for the restaurant
       if 'Item' not in data:
           print("null")
+           # Return the respone for Lex
           return{
             "sessionState": {
                 "dialogAction": {
@@ -142,6 +146,7 @@ def lambda_handler(event, context):
                 ExpressionAttributeValues={":neworderStatus": orderStatusFromLex},
             )
             print(updateOrderStatusRes)
+             # Return the respone for Lex
             return {
                 "sessionState": {
                     "dialogAction": {
