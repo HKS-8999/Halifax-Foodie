@@ -24,6 +24,7 @@ def lambda_handler(event, context):
         )
         if 'Item' not in data:
             print("null")
+            # Return the respone for Lex
             return{
               "sessionState": {
                   "dialogAction": {
@@ -49,6 +50,7 @@ def lambda_handler(event, context):
                 ExpressionAttributeValues={":newRating": orderRatingFromLex},
             )
             print(rateOrderData)
+            # Return the respone for Lex
             return {
                   "sessionState": {
                       "dialogAction": {
@@ -66,7 +68,7 @@ def lambda_handler(event, context):
                       }
                     ]
                 }
-    
+    # Functionality if the user wants to know the amount he paid for the order
     elif(reqEvent == 'paymentIntent'):
         orderIdFromLex = event['interpretations'][0]['intent']['slots']['paymentOrder']['value']['originalValue']
         print(orderIdFromLex)
@@ -80,6 +82,7 @@ def lambda_handler(event, context):
     
         if 'Item' not in data:
             print("null")
+            # Return the respone for Lex
             return{
               "sessionState": {
                   "dialogAction": {
@@ -99,6 +102,7 @@ def lambda_handler(event, context):
             }
         else:
             print(data)
+            # Return the respone for Lex
             return {
                   "sessionState": {
                       "dialogAction": {
@@ -116,7 +120,7 @@ def lambda_handler(event, context):
                       }
                     ]
                 }
-
+    # Functionality if the user wants to know the status of the order
     else:
       orderIdFromLex = event['interpretations'][0]['intent']['slots']['orderId']['value']['originalValue']
       print(orderIdFromLex)
@@ -129,6 +133,7 @@ def lambda_handler(event, context):
   
       if 'Item' not in data:
           print("null")
+          # Return the respone for Lex
           return{
             "sessionState": {
                 "dialogAction": {
@@ -148,6 +153,7 @@ def lambda_handler(event, context):
           }
       else:
           print(data)
+          # Return the respone for Lex
           return {
                 "sessionState": {
                     "dialogAction": {
