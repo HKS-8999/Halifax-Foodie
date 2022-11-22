@@ -3,8 +3,10 @@ import boto3
 import uuid
 from boto3.dynamodb.conditions import Attr
 
+# Boto client to get the resource DynamoDB
 client = boto3.client('dynamodb')
 
+# Lamdba function
 def lambda_handler(event, context):
     
     reqEvent = event['interpretations'][0]['intent']['name']
