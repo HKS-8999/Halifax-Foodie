@@ -10,6 +10,7 @@ import AWS from 'aws-sdk'
 
 const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME;
 const REGION = process.env.REACT_APP_REGION;
+const restaurantId = 'rest11'
 
 
 AWS.config.update({
@@ -27,6 +28,8 @@ const UploadImageToS3WithNativeSdk = () => {
 
     const [progress , setProgress] = useState(0);
     const [selectedFile, setSelectedFile] = useState(null);
+    const [extractFile, setExtractFile] = useState(null);
+
 
     const handleFileInput = (e) => {
         setSelectedFile(e.target.files[0]);
@@ -51,12 +54,35 @@ const UploadImageToS3WithNativeSdk = () => {
             })
     }
 
+    const keyIngredients = async(file) =>{
+        debugger
+        const filename = file.name.split('.')[0]
+        await fetch("https://bsem5fueaedmv4tdlvn6zkcelq0kwuti.lambda-url.us-east-1.on.aws/" ,
+        {
+            method: "POST",
+            body: JSON.stringify({
+              restaurantId: restaurantId,
+              filename : filename
+            })
+          })
+          .then((res) => res.json()).then((res)=>{ 
+            debugger
+            if(res.status){
+                console.log(res.status)
+                alert(res.message)
+            }
+            else{
+                alert("Host down extractinh")
+            }
+          })
+          }
 
-    return <div>
+    return (<div>
         <div>Native SDK File Upload Progress is {progress}%</div>
         <input type="file" onChange={handleFileInput}/>
         <button onClick={() => uploadFile(selectedFile)}> Upload to S3</button>
-    </div>
+        <button onClick={() => keyIngredients(selectedFile)}> Extract Key Data</button>
+         </div>)
 }
 
 export default UploadImageToS3WithNativeSdk;
