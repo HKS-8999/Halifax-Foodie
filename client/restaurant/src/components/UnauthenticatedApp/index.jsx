@@ -1,5 +1,6 @@
 import { useAuth } from "../../hooks/useAuth";
 import "./styles.css";
+import { KommunicateChat } from "../ChatWidget";
 
 function UnauthenticatedApp() {
   const { login } = useAuth();
@@ -12,6 +13,7 @@ function UnauthenticatedApp() {
           Login with Google
         </button>
       </div>
+      <KommunicateChat />
     </>
   );
 }

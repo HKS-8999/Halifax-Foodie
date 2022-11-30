@@ -6,6 +6,7 @@ import { UserChat } from "../UserChat";
 function AuthenticatedApp() {
   return (
     <BrowserRouter>
+      {/* <KommunicateChat></KommunicateChat> */}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="user/chat/:id" element={<UserChat />} />
