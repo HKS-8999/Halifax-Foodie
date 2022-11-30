@@ -7,6 +7,8 @@
 
 import React ,{useState} from 'react';
 import AWS from 'aws-sdk'
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME;
 const REGION = process.env.REACT_APP_REGION;
@@ -55,7 +57,7 @@ const UploadImageToS3WithNativeSdk = () => {
     }
 
     const keyIngredients = async(file) =>{
-        debugger
+        
         const filename = file.name.split('.')[0]
         await fetch("https://bsem5fueaedmv4tdlvn6zkcelq0kwuti.lambda-url.us-east-1.on.aws/" ,
         {
@@ -66,10 +68,13 @@ const UploadImageToS3WithNativeSdk = () => {
             })
           })
           .then((res) => res.json()).then((res)=>{ 
-            debugger
             if(res.status){
                 console.log(res.status)
-                alert(res.message)
+                return(
+                    <div class = "div3">
+                        <h3>{res.status}</h3>
+                    </div>
+                )
             }
             else{
                 alert("Host down extractinh")
@@ -78,10 +83,22 @@ const UploadImageToS3WithNativeSdk = () => {
           }
 
     return (<div>
-        <div>Native SDK File Upload Progress is {progress}%</div>
+        <div> Upload Progress : {progress}%</div>
         <input type="file" onChange={handleFileInput}/>
         <button onClick={() => uploadFile(selectedFile)}> Upload to S3</button>
         <button onClick={() => keyIngredients(selectedFile)}> Extract Key Data</button>
+        
+        <Stack direction="row" spacing={2}>
+            <Button variant="contained">Contained</Button>
+            <Button variant="contained" disabled>
+            Disabled
+        </Button>
+        <Button variant="contained" href="#contained-buttons">
+        Link
+        </Button>
+        </Stack>
+
+        <div class = "div3"></div>
          </div>)
 }
 
