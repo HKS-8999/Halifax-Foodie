@@ -62,7 +62,7 @@ function Feedback()
               setListOfFeedbacks(res)
             }
           });
-          }
+        }
           fetchFeedbacks();
       }
     }, []);
