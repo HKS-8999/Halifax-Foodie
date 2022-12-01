@@ -9,10 +9,13 @@ import React ,{useState} from 'react';
 import AWS from 'aws-sdk'
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { useNavigate } from 'react-router-dom';
+
 
 const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME;
 const REGION = process.env.REACT_APP_REGION;
 const restaurantId = 'rest11'
+
 
 
 AWS.config.update({
@@ -31,6 +34,7 @@ const UploadImageToS3WithNativeSdk = () => {
     const [progress , setProgress] = useState(0);
     const [selectedFile, setSelectedFile] = useState(null);
     const [extractFile, setExtractFile] = useState(null);
+    const navigate = useNavigate();
 
 
     const handleFileInput = (e) => {
@@ -49,7 +53,7 @@ const UploadImageToS3WithNativeSdk = () => {
         myBucket.putObject(params)
             .on('httpUploadProgress', (evt) => {
                 setProgress(Math.round((evt.loaded / evt.total) * 100))
-            })
+                })
             .send((err) => {
                 console.log(process.env.REACT_APP_BUCKET_NAME)
                 if (err) console.log(err)
@@ -84,20 +88,19 @@ const UploadImageToS3WithNativeSdk = () => {
 
     return (<div>
         <div> Upload Progress : {progress}%</div>
+        <p>
         <input type="file" onChange={handleFileInput}/>
-        <button onClick={() => uploadFile(selectedFile)}> Upload to S3</button>
-        <button onClick={() => keyIngredients(selectedFile)}> Extract Key Data</button>
-        
+        </p>
         <Stack direction="row" spacing={2}>
-            <Button variant="contained">Contained</Button>
-            <Button variant="contained" disabled>
-            Disabled
-        </Button>
-        <Button variant="contained" href="#contained-buttons">
-        Link
-        </Button>
-        </Stack>
+            <Button variant="contained" onClick={() => uploadFile(selectedFile)}>Upload Recipe</Button>
+            <Button variant="contained" onClick={() => keyIngredients(selectedFile)}>
+            Extract Key Data            
+            </Button>
+            <Button  variant="contained" onClick={() => navigate('/') }> 
+            Back to Home
+            </Button>
 
+        </Stack>
         <div class = "div3"></div>
          </div>)
 }

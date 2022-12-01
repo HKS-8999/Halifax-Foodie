@@ -10,7 +10,7 @@ function App() {
     <div className="container">
       <h1>| HalifaxFoodie | Restaurant Dashboard |</h1>
       {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
-      {/* <AuthenticatedApp /> */}
+      {/* <AuthenticatedApp/> */}
     </div>
   );
 }
