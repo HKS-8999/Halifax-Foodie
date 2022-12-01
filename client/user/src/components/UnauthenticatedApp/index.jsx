@@ -1,6 +1,5 @@
 import { useAuth } from "../../hooks/useAuth";
 import "./styles.css";
-import Bot from "../../Bot";
 import { KommunicateChat } from "../ChatWidget/guestBotIndex";
 
 function UnauthenticatedApp() {
