@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+// import Box from '@mui/material/Box';
+// import Card from '@mui/material/Card';
+// import CardContent from '@mui/material/CardContent';
+// import Typography from '@mui/material/Typography';
 
 
 export default function Home() {

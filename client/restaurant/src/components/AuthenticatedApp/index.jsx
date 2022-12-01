@@ -7,9 +7,6 @@ import Home from "../Home";
 import Feedback from "../Polarity";
 import UploadImageToS3WithNativeSdk from "../DataProcessing/DataProcessing";
 
-
-
-
 function AuthenticatedApp() {
   return (
     <BrowserRouter>
@@ -18,9 +15,14 @@ function AuthenticatedApp() {
         <Route path="/restaurant/chat/" element={<RestaurantChat />} />
         <Route path="/restaurant/chat/:id" element={<ChatRoom />} />
         <Route path="/restaurant/chat/:id/:id" element={<SessionList />} />
-        <Route path = "/" element = {<Home/>}/>
-        <Route path = "/customerFeedbackPolarity" element = {<Feedback/>}/>
-        <Route path = "/uploadRecipe" element = {<UploadImageToS3WithNativeSdk></UploadImageToS3WithNativeSdk>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/customerFeedbackPolarity" element={<Feedback />} />
+        <Route
+          path="/uploadRecipe"
+          element={
+            <UploadImageToS3WithNativeSdk></UploadImageToS3WithNativeSdk>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
