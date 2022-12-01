@@ -1,8 +1,13 @@
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { chatRooms } from "../../data/chatRooms";
 import "./styles.css";
-import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
+import Stack from "@mui/material/Stack";
 
 function Landing() {
   const navigate = useNavigate();
@@ -37,13 +42,18 @@ function Landing() {
   };
   return (
     <>
-      <div className="home_title">
-        <button OnClick="handleMachineLearning" className="btn" type="submit">
+      <Stack direction="row" spacing={2}>
+        <Button
+          variant="contained"
+          OnClick="handleMachineLearning"
+          className="btn"
+          type="submit"
+        >
           Machine Learning
-        </button>
-
+        </Button>
         {/* <button onClick={() => handlePolarityCheck()} className="btn" type="submit"> */}
-        <button
+        <Button
+          variant="contained"
           onClick={() =>
             navigate("/customerFeedbackPolarity", {
               state: { restaurantID: restaurantId },
@@ -51,8 +61,16 @@ function Landing() {
           }
         >
           Analyze Customer Feedback
-        </button>
-      </div>
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() =>
+            navigate("/uploadRecipe", { state: { restaurantID: restaurantId } })
+          }
+        >
+          Upload Recipe
+        </Button>
+      </Stack>
       <ul className="chat-room-list">
         <li>
           <Link to={`/restaurant/chat/`}>Customer Support</Link>
