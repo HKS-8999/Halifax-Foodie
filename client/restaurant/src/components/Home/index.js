@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material';
+import Stack from '@mui/material/Stack';
 
 
 export default function Home() {
@@ -39,18 +41,18 @@ export default function Home() {
         })
     }
     return (
-        <div className="home_title">
-            <div>
-                <h1>Halifax Foodie</h1>
-            </div>
-            <button OnClick = "handleMachineLearning" className="btn" type="submit">
-            Machine Learning
-            </button>
-
-            {/* <button onClick={() => handlePolarityCheck()} className="btn" type="submit"> */}
-            <button onClick={() => navigate('/customerFeedbackPolarity', { state : {restaurantID : restaurantId} }) }> 
-            Analyze Customer Feedback
-            </button>
-        </div>
+          
+            <Stack direction="row" spacing={2}>
+                <Button variant = "contained" OnClick = "handleMachineLearning" className="btn" type="submit">
+                Machine Learning
+                </Button>
+                {/* <button onClick={() => handlePolarityCheck()} className="btn" type="submit"> */}
+                <Button variant = "contained" onClick={() => navigate('/customerFeedbackPolarity', { state : {restaurantID : restaurantId} }) }> 
+                Analyze Customer Feedback
+                </Button>
+                <Button variant = "contained" onClick={() => navigate('/uploadRecipe', { state : {restaurantID : restaurantId} }) }> 
+                Upload Recipe
+                </Button>
+            </Stack>
     );
 }
