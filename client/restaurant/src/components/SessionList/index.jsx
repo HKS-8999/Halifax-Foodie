@@ -29,3 +29,5 @@ function SessionList() {
 }
 
 export { SessionList };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

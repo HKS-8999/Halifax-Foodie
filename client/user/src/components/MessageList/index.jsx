@@ -38,3 +38,4 @@ function Message({ message, isOwnMessage }) {
 }
 
 export { MessageList };
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

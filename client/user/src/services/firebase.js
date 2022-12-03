@@ -86,3 +86,4 @@ function getMessages(roomId, callback, user, sessionId) {
 }
 
 export { loginWithGoogle, sendMessage, getMessages };
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

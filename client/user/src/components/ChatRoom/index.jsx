@@ -29,3 +29,5 @@ function ChatRoom() {
 }
 
 export { ChatRoom };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

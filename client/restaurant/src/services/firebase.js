@@ -16,6 +16,8 @@ import {
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
 
 // ...
+// This js file handles all the firebase operations using the functions below
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -36,6 +38,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const analytics = getAnalytics(app);
 
+// Simple login function to authenticate the user
 async function loginWithGoogle() {
   try {
     const provider = new GoogleAuthProvider();
@@ -53,6 +56,7 @@ async function loginWithGoogle() {
   }
 }
 
+// Function to send the message to firebase and store in the database
 async function sendMessage(roomId, user, text, sessionId) {
   try {
     await addDoc(collection(db, "chat-rooms", roomId, sessionId), {
@@ -66,6 +70,8 @@ async function sendMessage(roomId, user, text, sessionId) {
   }
 }
 
+
+// Function to get the messages from the firestore
 function getMessages(roomId, callback, user, sessionId) {
   // console.log("Room Id in get messages: " + roomId);
   // console.log("user.uid from get messages: " + user.uid);
@@ -86,6 +92,7 @@ function getMessages(roomId, callback, user, sessionId) {
 }
 
 
+//Function to geet the sessions from firebase
 
 function getSessions(roomId, callback) {
   // console.log(
@@ -102,3 +109,5 @@ function getSessions(roomId, callback) {
 }
 
 export { loginWithGoogle, sendMessage, getMessages, getSessions };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

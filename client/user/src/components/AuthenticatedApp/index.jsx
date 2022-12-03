@@ -9,11 +9,13 @@ function AuthenticatedApp() {
       {/* <KommunicateChat></KommunicateChat> */}
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="user/chat/:id" element={<UserChat />} />
-        <Route path="/user/chat/:id/room/:id" element={<ChatRoom />} />
+        <Route path="user/:id/chat/:id" element={<UserChat />} />
+        <Route path="/user/:id/chat/:id/room/:id" element={<ChatRoom />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
 export { AuthenticatedApp };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

@@ -4,3 +4,5 @@ const sessionId = [
 ];
 
 export { sessionId };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/
