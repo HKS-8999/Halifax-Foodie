@@ -3,6 +3,9 @@ import { UnauthenticatedApp } from "./components/UnauthenticatedApp";
 import { useAuth } from "./hooks/useAuth";
 import "./App.css";
 
+// App renders all the components at a single place
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/
+
 function App() {
   const { user } = useAuth();
 

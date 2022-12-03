@@ -4,8 +4,6 @@ import { getSessions } from "../services/firebase";
 
 function useSessions(roomId) {
   const [sessions, setSessions] = React.useState([]);
-  //   const { user } = useAuth();
-  //   const sessionId = "yiy";
 
   React.useEffect(() => {
     const unsubscribe = getSessions(roomId, setSessions);
@@ -17,3 +15,5 @@ function useSessions(roomId) {
 }
 
 export { useSessions };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

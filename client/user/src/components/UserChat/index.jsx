@@ -14,7 +14,11 @@ function UserChat() {
       <ul className="chat-room-list">
         {chatRooms.map((room) => (
           <li key={room.id}>
-            <Link to={`/user/chat/${params.id}/room/${room.id}`}>{room.title}</Link>
+            <Link
+              to={`/user/menu@feasts.com/chat/${params.id}/room/${room.id}`}
+            >
+              {room.title}
+            </Link>
           </li>
         ))}
       </ul>
@@ -23,3 +27,4 @@ function UserChat() {
 }
 
 export { UserChat };
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

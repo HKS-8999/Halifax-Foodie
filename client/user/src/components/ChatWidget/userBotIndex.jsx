@@ -36,3 +36,4 @@ class KommunicateChat extends Component {
   }
 }
 export { KommunicateChat };
+// Referenced from: https://docs.kommunicate.io/docs/web-installation

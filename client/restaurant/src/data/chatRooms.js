@@ -8,3 +8,5 @@ const chatRooms = [
 ];
 
 export { chatRooms };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

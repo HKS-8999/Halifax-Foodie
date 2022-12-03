@@ -108,3 +108,5 @@ function Landing() {
 }
 
 export { Landing };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/
