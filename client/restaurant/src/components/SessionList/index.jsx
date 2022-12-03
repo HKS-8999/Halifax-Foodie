@@ -4,6 +4,7 @@ import "./styles.css";
 import { MessageInput } from "../MessageInput";
 import { MessageList } from "../MessageList";
 
+// Function to display all the sessions available in the firebase
 function SessionList() {
   const params = useParams();
 

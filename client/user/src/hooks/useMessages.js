@@ -1,6 +1,7 @@
 import React from "react";
 import { getMessages } from "../services/firebase";
 import { useAuth } from "../hooks/useAuth";
+// Function to recieve the message in real-time into the web application using useEffect()
 
 function useMessages(roomId) {
   const [messages, setMessages] = React.useState([]);

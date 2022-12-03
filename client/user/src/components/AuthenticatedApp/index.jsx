@@ -3,6 +3,7 @@ import { Landing } from "../Landing";
 import { ChatRoom } from "../ChatRoom";
 import { UserChat } from "../UserChat";
 
+//Function to route the pages after authentication 
 function AuthenticatedApp() {
   return (
     <BrowserRouter>

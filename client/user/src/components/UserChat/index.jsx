@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { chatRooms } from "../../data/chatRooms";
 import "./styles.css";
-
+// Function to display the chat rooms available for a user
 function UserChat() {
   const params = useParams();
   console.log(params.id);

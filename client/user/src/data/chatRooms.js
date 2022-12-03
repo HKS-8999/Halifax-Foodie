@@ -1,3 +1,4 @@
+// Chat rooms for the restaurant and the user
 const chatRooms = [
   { id: "delivery", title: "Late Delivery Issues" },
   { id: "quality", title: "Food Quality Issues" },

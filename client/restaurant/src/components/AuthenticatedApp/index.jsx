@@ -6,6 +6,7 @@ import { RestaurantChat } from "../RestaurantChat";
 import Feedback from "../Polarity";
 import UploadImageToS3WithNativeSdk from "../DataProcessing/DataProcessing";
 
+//Function to route the pages after authentication 
 function AuthenticatedApp() {
   return (
     <BrowserRouter>

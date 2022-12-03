@@ -3,7 +3,7 @@ import { chatRooms } from "../../data/chatRooms";
 import "./styles.css";
 import { MessageInput } from "../MessageInput";
 import { MessageList } from "../MessageList";
-
+//Function to show the chatrooms available for the user to complain
 function ChatRoom() {
   const params = useParams();
 

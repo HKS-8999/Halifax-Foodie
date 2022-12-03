@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { chatRooms } from "../../data/chatRooms";
 import "./styles.css";
-
+// Function to render the landing page of the user module
 function Landing() {
   return (
     <>

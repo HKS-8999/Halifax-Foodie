@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
-
+// Default Kommunicate instalation component to add chat widget to the web application
 class KommunicateChat extends Component {
   constructor(props) {
     super(props);
