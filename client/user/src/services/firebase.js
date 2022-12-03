@@ -36,6 +36,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const analytics = getAnalytics(app);
 
+// Simple login function to authenticate the user
 async function loginWithGoogle() {
   try {
     const provider = new GoogleAuthProvider();
@@ -52,8 +53,8 @@ async function loginWithGoogle() {
     return null;
   }
 }
-// let sessionId = "jjlkjebrb278";
 
+// Function to send the message to firebase and store in the database
 async function sendMessage(roomId, user, text, sessionId) {
   try {
     await addDoc(collection(db, "chat-rooms", roomId, sessionId), {
@@ -66,6 +67,8 @@ async function sendMessage(roomId, user, text, sessionId) {
     console.error(error);
   }
 }
+
+// Function to get the messages from the firestore
 
 function getMessages(roomId, callback, user, sessionId) {
   console.log("Room Id in get messages: " + roomId);

@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { sendMessage } from "../../services/firebase";
 import "./styles.css";
+// Function to handle the message inputs and send them to the funtcion in services
 
 function MessageInput({ roomId }) {
   const { user } = useAuth();

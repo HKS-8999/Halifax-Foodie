@@ -2,6 +2,7 @@ import { useAuth } from "../../hooks/useAuth";
 import "./styles.css";
 import { KommunicateChat } from "../ChatWidget";
 
+// Function to handle the unauthenticated user i.e., just display the login button
 function UnauthenticatedApp() {
   const { login } = useAuth();
 
