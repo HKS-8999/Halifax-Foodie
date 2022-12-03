@@ -4,8 +4,6 @@ import { getSessions } from "../services/firebase";
 
 function useSessions(roomId) {
   const [sessions, setSessions] = React.useState([]);
-  //   const { user } = useAuth();
-  //   const sessionId = "yiy";
 
   React.useEffect(() => {
     const unsubscribe = getSessions(roomId, setSessions);

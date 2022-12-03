@@ -85,7 +85,7 @@ function getMessages(roomId, callback, user, sessionId) {
   );
 }
 
-let sessionId = "yiy";
+
 
 function getSessions(roomId, callback) {
   // console.log(
