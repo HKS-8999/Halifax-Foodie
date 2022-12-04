@@ -1,8 +1,10 @@
 import { Link, useParams } from "react-router-dom";
 import React from 'react';
+import Stack from '@mui/material/Stack';
 import { useState } from "react";
 
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Button } from "@mui/material";
 
 export default function Similarity() {
 
@@ -126,16 +128,18 @@ export default function Similarity() {
 				<br />
 				<br />
 				<br />
-				<button onClick={handleSubmit} className="btn" type="submit">
+				<Stack direction="row" spacing={2}>
+				<Button variant="contained" onClick={handleSubmit} className="btn" type="submit">
 					Submit
-				</button>
-				<button onClick={handleSimilarity} className="btn" type="submit">
+				</Button>
+				<Button variant="contained" onClick={handleSimilarity} className="btn" type="submit">
 					Check Similarity
-				</button>
+				</Button>
 
-				<button className='btn' type='back'>
+				<Button variant="contained" className='btn' type='back'>
 					<Link to="/">Back to Home</Link>
-				</button>
+				</Button>
+				</Stack>
 			</form>
 			<br></br>
 			<br></br>
