@@ -13,6 +13,7 @@ logger.setLevel(logging.DEBUG)
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('CustomerFeedback')
 
+
 def lambda_handler(event, context):
     body = event['body']
     print(body)
@@ -22,18 +23,18 @@ def lambda_handler(event, context):
     feedback = body_json['feedback']
     id = body_json['id']
     try:
-            
+
         table.put_item(
             Item={'id': id,
-                'restaurant_id': restaurant_id,
-                'user_id':user_id,
-                'feedback':feedback})
-        return{
-        'statusCode': 201,
-        'body': json.dumps('Success')
+                  'restaurant_id': restaurant_id,
+                  'user_id': user_id,
+                  'feedback': feedback})
+        return {
+            'statusCode': 201,
+            'body': json.dumps('Success')
         }
     except:
-        return{
-        'statusCode' : 200,
-        'body' : json.dumps('Error')
+        return {
+            'statusCode': 200,
+            'body': json.dumps('Error')
         }
