@@ -1,12 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { chatRooms } from "../../data/chatRooms";
+import React from "react";
 import "./styles.css";
-<<<<<<< HEAD
-import React, { Component }  from 'react';
-
-=======
 // Function to display the chat rooms available for a user
->>>>>>> 8bc6e52c898ee7bef0cfc05d705dbeea6ef1f0b8
 function UserChat() {
   const params = useParams();
   console.log(params.id);
