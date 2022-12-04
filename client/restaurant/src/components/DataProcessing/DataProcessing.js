@@ -66,12 +66,9 @@ const UploadImageToS3WithNativeSdk = () => {
           .then((res) => res.json()).then((res)=>{ 
             if(res.status){
                 console.log(res.status)
-                return(
-                    <div class = "div3">
-                        <h3>{res.status}</h3>
-                        alert({res.status})
-                    </div>
-                )
+                
+                alert("Extracted Key Ingredients")
+                   
             }
             else{
                 alert("Host down extractinh")

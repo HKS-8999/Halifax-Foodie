@@ -1,9 +1,7 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React from 'react';
 import Stack from '@mui/material/Stack';
 import { useState } from "react";
-
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from "@mui/material";
 
 export default function Similarity() {
