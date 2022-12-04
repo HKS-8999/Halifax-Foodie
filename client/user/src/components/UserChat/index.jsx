@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { chatRooms } from "../../data/chatRooms";
 import "./styles.css";
+import React, { Component }  from 'react';
 
 function UserChat() {
   const params = useParams();

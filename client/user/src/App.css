@@ -43,7 +43,7 @@ button {
 input,
 button {
   font-size: 1rem;
-  color: inherit;
+  color: black;
   border: none;
   border-radius: var(--border-radius);
 }

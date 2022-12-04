@@ -1,6 +1,7 @@
 import { useAuth } from "../../hooks/useAuth";
 import "./styles.css";
 import { KommunicateChat } from "../ChatWidget/guestBotIndex";
+import React, { Component }  from 'react';
 
 function UnauthenticatedApp() {
   const { login } = useAuth();

@@ -3,14 +3,19 @@ import logging
 from boto3.dynamodb.conditions import Attr
 import pprint
 import json
+import gspread
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 # Reference : https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb.html
 
+cred = gspread.service_account(filename='credentials.json')
+gsheet = cred.open("visualizeData")
+sheet1 = gsheet.sheet1
+
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('User_Feedback')
+table = dynamodb.Table('CustomerFeedback')
 comprehend = boto3.client("comprehend")
 
 def lambda_handler(event, context):
@@ -24,6 +29,7 @@ def lambda_handler(event, context):
             'body': json.dumps('No reviews exist')
            }
     else:
+        sheet1.delete_rows(2, 100)
         polarity = []
         items = res['Items']
         for item in items:
@@ -31,7 +37,16 @@ def lambda_handler(event, context):
             print(sentiment['Sentiment'])
             polarity_map = {'user_id': item['user_id'], 'sentiment': sentiment['Sentiment'], 'feedback': item['feedback']}
             polarity.append(polarity_map)
+        write_events_to_google_sheet(my_list)
         return{
             'statusCode' : 200,
             'body' : json.dumps(polarity)
         }
+    
+def write_events_to_google_sheet(polarity_map):
+    for item in polarity_map:
+        user_id = polarity_map['user_id']
+        sentiment = polarity_map['sentiment']
+        row = [user_id, sentiment]
+        print(row)
+        sheet1.insert_row(row, index = 2)

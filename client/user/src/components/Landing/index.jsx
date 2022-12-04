@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { chatRooms } from "../../data/chatRooms";
 import "./styles.css";
+import React, { Component } from 'react';
 
 function Landing() {
   return (
@@ -8,6 +8,9 @@ function Landing() {
       <ul className="chat-room-list">
         <li>
           <Link to="/user/chat/yh43">Chat Support</Link>
+        </li>
+        <li>
+          <Link to="/user/customerFeedback">Give Feedback</Link>
         </li>
       </ul>
     </>
