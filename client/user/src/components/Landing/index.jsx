@@ -5,11 +5,7 @@ import "./styles.css";
 function Landing() {
   return (
     <>
-      <ul className="chat-room-list">
-        <li>
-          <Link to="/user/chat/yh43">Chat Support</Link>
-        </li>
-      </ul>
+      <h2>Welcome!</h2>
     </>
   );
 }
