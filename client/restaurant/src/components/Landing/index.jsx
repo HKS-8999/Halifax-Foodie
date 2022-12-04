@@ -45,9 +45,9 @@ function Landing() {
       <Stack direction="row" spacing={2}>
         <Button
           variant="contained"
-          OnClick="handleMachineLearning"
-          className="btn"
-          type="submit"
+          onClick={() =>
+            navigate("/similarity")
+          }
         >
           Machine Learning
         </Button>

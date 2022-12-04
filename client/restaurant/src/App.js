@@ -3,9 +3,9 @@ import { UnauthenticatedApp } from "./components/UnauthenticatedApp";
 import { useAuth } from "./hooks/useAuth";
 import "./App.css";
 
+
 function App() {
   const { user } = useAuth();
-
   return (
     <div className="container">
       <h1>| HalifaxFoodie | Restaurant Dashboard |</h1>
@@ -14,5 +14,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

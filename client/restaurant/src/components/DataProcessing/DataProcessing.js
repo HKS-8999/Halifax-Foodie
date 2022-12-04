@@ -1,10 +1,3 @@
-// bucketName: process.env.REACT_APP_BUCKET_NAME,
-// region: process.env.REACT_APP_REGION,
-// accessKeyId: process.env.REACT_APP_ACCESS,
-// secretAccessKey: process.env.REACT_APP_SECRET,
-// sessionKey : process.env.REACT_APP_SESSION
-
-
 import React ,{useState} from 'react';
 import AWS from 'aws-sdk'
 import Button from '@mui/material/Button';
@@ -14,8 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME;
 const REGION = process.env.REACT_APP_REGION;
-const restaurantId = 'rest11'
-
+const restaurantId = 'test@dal.ca'
 
 
 AWS.config.update({
@@ -77,6 +69,7 @@ const UploadImageToS3WithNativeSdk = () => {
                 return(
                     <div class = "div3">
                         <h3>{res.status}</h3>
+                        alert({res.status})
                     </div>
                 )
             }
@@ -91,6 +84,7 @@ const UploadImageToS3WithNativeSdk = () => {
         <p>
         <input type="file" onChange={handleFileInput}/>
         </p>
+        
         <Stack direction="row" spacing={2}>
             <Button variant="contained" onClick={() => uploadFile(selectedFile)}>Upload Recipe</Button>
             <Button variant="contained" onClick={() => keyIngredients(selectedFile)}>

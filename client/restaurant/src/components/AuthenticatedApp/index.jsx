@@ -4,6 +4,7 @@ import { ChatRoom } from "../ChatRoom";
 import { SessionList } from "../SessionList";
 import { RestaurantChat } from "../RestaurantChat";
 import Feedback from "../Polarity";
+import Similarity from "../Similarity";
 import UploadImageToS3WithNativeSdk from "../DataProcessing/DataProcessing";
 
 function AuthenticatedApp() {
@@ -21,7 +22,10 @@ function AuthenticatedApp() {
             <UploadImageToS3WithNativeSdk></UploadImageToS3WithNativeSdk>
           }
         />
+        <Route path="/similarity" element={<Similarity />} />
+
       </Routes>
+    
     </BrowserRouter>
   );
 }
