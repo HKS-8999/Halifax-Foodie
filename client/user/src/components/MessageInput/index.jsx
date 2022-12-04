@@ -2,11 +2,12 @@ import React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { sendMessage } from "../../services/firebase";
 import "./styles.css";
+// Function to handle the message inputs and send them to the funtcion in services
 
 function MessageInput({ roomId }) {
   const { user } = useAuth();
   const [value, setValue] = React.useState("");
-  const sessionId = "yiy";
+  const sessionId = "10eea881-0686-4e16-96dc-abf69fc07c6e";
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -36,3 +37,4 @@ function MessageInput({ roomId }) {
   );
 }
 export { MessageInput };
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

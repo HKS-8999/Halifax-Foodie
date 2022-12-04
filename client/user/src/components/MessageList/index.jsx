@@ -3,6 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useMessages } from "../../hooks/useMessages";
 import "./styles.css";
 
+// Function to display the messages from firebase in real-time
 function MessageList({ roomId }) {
   const containerRef = React.useRef(null);
   const { user } = useAuth();
@@ -38,3 +39,4 @@ function Message({ message, isOwnMessage }) {
 }
 
 export { MessageList };
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

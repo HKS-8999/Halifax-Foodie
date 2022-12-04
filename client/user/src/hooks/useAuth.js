@@ -1,6 +1,7 @@
 import React from "react";
 import { AuthContext } from "../context/auth";
 
+// Function to store the auth context from firebase
 function useAuth() {
   const value = React.useContext(AuthContext);
 
@@ -12,3 +13,4 @@ function useAuth() {
 }
 
 export { useAuth };
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

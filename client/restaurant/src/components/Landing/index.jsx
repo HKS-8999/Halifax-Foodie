@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import { Button, Grid } from "@mui/material";
 import Stack from "@mui/material/Stack";
 
+// Function to render the landing page of the restaurant
 function Landing() {
   const navigate = useNavigate();
 
@@ -85,6 +86,7 @@ function Landing() {
       <Grid container spacing={2}>
         <Grid item xs={6} md={8}>
           <h2>Recipe Statistics</h2>
+          {/* The iframe from the Looker studio is being rendered into the restaurant dashboard */}
           <div
             dangerouslySetInnerHTML={{
               __html:
@@ -95,6 +97,7 @@ function Landing() {
         <Grid item xs={6} md={4}>
           {" "}
           <h2>Login Statistics</h2>
+          {/* The iframe from the Looker studio is being rendered into the restaurant dashboard */}
           <div
             dangerouslySetInnerHTML={{
               __html:
@@ -108,3 +111,5 @@ function Landing() {
 }
 
 export { Landing };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

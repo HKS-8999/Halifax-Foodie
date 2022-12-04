@@ -7,6 +7,7 @@ import Feedback from "../Polarity";
 import Similarity from "../Similarity";
 import UploadImageToS3WithNativeSdk from "../DataProcessing/DataProcessing";
 
+//Function to route the pages after authentication 
 function AuthenticatedApp() {
   return (
     <BrowserRouter>
@@ -31,3 +32,6 @@ function AuthenticatedApp() {
 }
 
 export { AuthenticatedApp };
+
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

@@ -1,6 +1,7 @@
 import React from "react";
 import { loginWithGoogle } from "../services/firebase";
 
+// Context to handle the firebase auth provider and auth context for authentication
 const AuthContext = React.createContext();
 
 const AuthProvider = (props) => {
@@ -24,3 +25,5 @@ const AuthProvider = (props) => {
 };
 
 export { AuthContext, AuthProvider };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

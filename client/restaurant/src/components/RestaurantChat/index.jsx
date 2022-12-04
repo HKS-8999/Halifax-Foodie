@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { chatRooms } from "../../data/chatRooms";
 import "./styles.css";
 
+// Function to display all the chat rooms available
 function RestaurantChat() {
   return (
     <>
@@ -21,3 +22,5 @@ function RestaurantChat() {
 }
 
 export { RestaurantChat };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/

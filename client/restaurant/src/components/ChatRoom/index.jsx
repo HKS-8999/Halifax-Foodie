@@ -3,6 +3,7 @@ import { sessionId } from "../../data/sessionIds";
 import { useSessions } from "../../hooks/useSessions";
 import "./styles.css";
 
+//Function to show the sessions available inside each chatroom
 function ChatRoom() {
   const params = useParams();
 
@@ -11,7 +12,6 @@ function ChatRoom() {
   const sessions = useSessions(params.id);
   console.log("Sessions in chatroom:" + sessions);
 
-  // console.log(room);
   if (!room) {
     // TODO: 404
   }
@@ -36,3 +36,5 @@ function ChatRoom() {
 }
 
 export { ChatRoom };
+
+// Referenced from: https://blog.logrocket.com/how-to-build-chatroom-app-react-firebase/
