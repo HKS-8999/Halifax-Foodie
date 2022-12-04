@@ -16,3 +16,9 @@
   border-radius: var(--border-radius);
   cursor: pointer;
 }
+.end-message {
+  padding: 12px 14px;
+  background: var(--color-gray);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
