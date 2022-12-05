@@ -10,28 +10,28 @@ function MessageInput({ roomId }) {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [value, setValue] = React.useState("");
-  const sessionId = "10eea881-0686-4e16-96dc-abf69fc07c6e";
+
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
   const endSession = (res) => {
-    // axios
-    //   .get(
-    //     "https://us-central1-b00899473-csci5410-365518.cloudfunctions.net/g8-hfxfoodie-end-pub"
-    //   )
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     return res.status(200).json({
-    //       message: response.data.ip,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     return res.status(500).json({
-    //       error: err,
-    //     });
-    //   });
+    axios
+      .get(
+        "https://us-central1-b00899473-csci5410-365518.cloudfunctions.net/g8-hfxfoodie-end-pub"
+      )
+      .then((response) => {
+        console.log(response.data);
+        return res.status(200).json({
+          message: response.data.ip,
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          error: err,
+        });
+      });
 
     let path = `/`;
     navigate(path);
@@ -58,7 +58,6 @@ function MessageInput({ roomId }) {
         Send
       </button>
       <button
-        onclick={endSession()}
         disabled={value < 1}
         className="end-message"
       >

@@ -3,6 +3,7 @@ import base64
 import json
 from google.cloud import pubsub_v1
 
+# function to publish to the topic
 def hello_world(request):
     publisher = pubsub_v1.PublisherClient()
     try:
