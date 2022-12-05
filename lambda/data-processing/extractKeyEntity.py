@@ -14,7 +14,6 @@ def send_response(status, message, data):
         "data": data
     }
 
-
 def lambda_handler(event, context):
     try:
         s3 = boto3.client("s3")
@@ -46,7 +45,7 @@ def lambda_handler(event, context):
                     for items in list:
                         logger.info(list)
                         key_ingredients.append(items)
-
+            
             response = table.put_item(
                 Item={'recipe_name': file, 'key_ingredients': key_ingredients, 'restaurant_id': restaurant_id})
             response = send_response(True, "Key Ingredients Extracted", None)
