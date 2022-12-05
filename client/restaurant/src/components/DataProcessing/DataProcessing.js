@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME;
 const REGION = process.env.REACT_APP_REGION;
-const restaurantId = 'test@dal.ca'
 
 
 AWS.config.update({

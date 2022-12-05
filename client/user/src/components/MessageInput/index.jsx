@@ -9,8 +9,6 @@ function MessageInput({ roomId }) {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [value, setValue] = React.useState("");
-  const sessionId = "10eea881-0686-4e16-96dc-abf69fc07c6e";
-
   const handleChange = (event) => {
     setValue(event.target.value);
   };

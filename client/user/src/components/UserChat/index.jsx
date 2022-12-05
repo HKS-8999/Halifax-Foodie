@@ -16,7 +16,7 @@ function UserChat() {
         {chatRooms.map((room) => (
           <li key={room.id}>
             <Link
-              to={`/user/menu@feasts.com/chat/${params.id}/room/${room.id}`}
+              to={`/user/${params.id}/chat/${params.id}/room/${room.id}`}
             >
               {room.title}
             </Link>

@@ -11,9 +11,7 @@ function SessionList() {
   const session = sessionId.find((x) => x.id === params.id);
 
   console.log("room" + session);
-  if (!session) {
-    // TODO: 404
-  }
+
 
   return (
     <>
