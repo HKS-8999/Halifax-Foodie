@@ -54,7 +54,6 @@ function MessageInput({ roomId }) {
         Send
       </button>
       <button
-        onclick={endSession()}
         disabled={value < 1}
         className="end-message"
       >
