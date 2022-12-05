@@ -1,6 +1,8 @@
 const Firestore = require('@google-cloud/firestore');
 const PROJECTID = 'halifaxfoodie-group8';
+const COLLECTION_NAME = 'chat-rooms';
 
+// Function to store the details from pubsub to firebase
 const firestore = new Firestore({
   "type": "service_account",
   "project_id": "halifaxfoodie-group8",
@@ -24,13 +26,47 @@ exports.helloPubSub = (event, context) => {
   let json_message = JSON.parse(message);
   console.log(json_message.orderId);
   console.log(json_message.restaurantId);
-  // const restaurantId = json_message.restaurantId;
+  // const firebaseConfig = {
+  // apiKey: "AIzaSyDYmhxfwKMVOckU22SqLEvsVzFUT7WSzRY",
+  // authDomain: "halifaxfoodie-group8.firebaseapp.com",
+  // projectId: "halifaxfoodie-group8",
+  // storageBucket: "halifaxfoodie-group8.appspot.com",
+  // messagingSenderId: "309496826813",
+  // appId: "1:309496826813:web:6d4b9d553ee273589320d4",
+  // measurementId: "G-4X911D3LZ2",
+  // };
+  
+  // const app = initializeApp(firebaseConfig);
+  // const db = getFirestore(app);
+  // addDoc(collection(db, "chat-rooms", "test-room", "test-session"), {
+  //     uid: "hhh",
+  //     displayName: "Jj",
+  //     text: "kk",
+  //     timestamp: "jj",
+  //   });
+  const orderId = json_message.orderId;
+  const restaurantId = json_message.restaurantId;
   const sessionId = json_message.sessionId;
+  const userId = json_message.userId;
+  const displayName = json_message.displayName;
+  const created = new Date().toUTCString();
+  firestore.collection(COLLECTION_NAME).doc("delivery").collection(sessionId).doc().set({
+    orderId : orderId,
+    restaurantId : restaurantId,
+    displayName : displayName,
+    text: "You chat has been initiated",
+    timestamp: created,
+    uid: userId
+    }).then(doc => {
+      console.info('stored new doc id#', doc.id);
+    }).catch(err => {
+      console.error(err);
+    });
   const sessionStatusCollecttion = 'sessionStatus';
-  // const sessionStatus = "inactive";
-  firestore.collection(sessionStatusCollecttion).doc(sessionId).update(
-    {sessionStatus:"inactive"}
-    ).then(doc => {
+  // const sessionStatus = "active";
+  firestore.collection(sessionStatusCollecttion).doc(sessionId).set({
+    sessionStatus: "active"
+    }).then(doc => {
       console.info('stored new doc id#', doc.id);
     }).catch(err => {
       console.error(err);

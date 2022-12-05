@@ -12,9 +12,6 @@ function ChatRoom() {
   const sessions = useSessions(params.id);
   console.log("Sessions in chatroom:" + sessions);
 
-  if (!room) {
-    // TODO: 404
-  }
 
   return (
     <>

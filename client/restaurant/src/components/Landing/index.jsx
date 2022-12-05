@@ -41,6 +41,22 @@ function Landing() {
       }
     });
   };
+
+  axios.get(
+        "https://gccith72u9.execute-api.us-east-1.amazonaws.com/trigger"
+      )
+      .then((response) => {
+        console.log(response.data);
+        return res.status(200).json({
+          message: response.data.ip,
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          error: err,
+        });
+      });
+
   return (
     <>
       <Stack direction="row" spacing={2}>
