@@ -4,7 +4,9 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router-dom';
 
+// Reference : https://javascript.plainenglish.io/how-to-upload-files-to-aws-s3-in-react-591e533d615e
 
+// Fetch bucket name from env variable
 const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME;
 const REGION = process.env.REACT_APP_REGION;
 const restaurantId = 'test@dal.ca'

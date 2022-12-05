@@ -61,7 +61,7 @@ export default function Similarity() {
 
 	const send = async (e) => {
 		
-		await fetch("http://localhost:8080", {
+		await fetch("https://us-central1-serverless-project-368915.cloudfunctions.net/PredictScore", {
 			method: "POST",
 			body: JSON.stringify({
 				recipe: recipe
